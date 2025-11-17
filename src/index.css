@@ -138,8 +138,8 @@ body::after {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 30% 40%, rgba(88, 166, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 30% 40%, rgba(77, 184, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(255, 235, 59, 0.08) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
 }
@@ -294,15 +294,32 @@ h1 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
-    color: #991b1b;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: 2px solid #ef4444;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-    animation: fadeIn 0.5s ease-out;
+    padding: 0.7rem 1.3rem;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #4db8ff 0%, #58a6ff 50%, #ffeb3b 100%);
+    background-size: 200% 200%;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid rgba(77, 184, 255, 0.5);
+    box-shadow: 
+        0 5px 20px rgba(77, 184, 255, 0.5),
+        0 5px 20px rgba(255, 235, 59, 0.3),
+        0 0 30px rgba(77, 184, 255, 0.4);
+    animation: fadeIn 0.5s ease-out, shimmer 4s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.both-solved-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+    animation: shimmer 3s linear infinite;
 }
 
 .both-icon {
@@ -319,15 +336,32 @@ h1 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    color: #92400e;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: 2px solid #f59e0b;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-    animation: fadeIn 0.5s ease-out;
+    padding: 0.7rem 1.3rem;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ffeb3b 0%, #ffd700 50%, #ffc107 100%);
+    background-size: 200% 200%;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid rgba(255, 235, 59, 0.8);
+    box-shadow: 
+        0 5px 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 235, 59, 0.5),
+        inset 0 2px 10px rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.5s ease-out, shimmer 3s linear infinite, float 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.unique-solved-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+    animation: shimmer 2.5s linear infinite;
 }
 
 .unique-icon {
@@ -409,11 +443,13 @@ button:hover::before {
 button:hover:not(:disabled) {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 
-        0 15px 40px rgba(88, 166, 255, 0.7),
-        0 0 40px rgba(88, 166, 255, 0.6),
-        0 0 60px rgba(255, 255, 255, 0.2);
+        0 15px 40px rgba(77, 184, 255, 0.8),
+        0 0 40px rgba(77, 184, 255, 0.7),
+        0 0 60px rgba(255, 255, 255, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.2);
     background-position: 100% 0;
     animation: lightsaber 1s infinite;
+    border: 2px solid rgba(77, 184, 255, 0.5);
 }
 
 button:active:not(:disabled) {
@@ -481,14 +517,18 @@ button:disabled {
 }
 
 .rating-buttons button.active {
-    background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+    background: linear-gradient(135deg, #4db8ff 0%, #58a6ff 50%, #1f6feb 100%);
+    background-size: 200% 200%;
     color: #000;
     box-shadow: 
-        0 8px 25px rgba(88, 166, 255, 0.6),
-        0 0 30px rgba(88, 166, 255, 0.5);
-    border-color: transparent;
-    animation: lightsaber 2s infinite;
+        0 8px 30px rgba(77, 184, 255, 0.8),
+        0 0 40px rgba(77, 184, 255, 0.7),
+        0 0 20px rgba(255, 255, 255, 0.3),
+        inset 0 1px 5px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(77, 184, 255, 0.8);
+    animation: lightsaber 2s infinite, shimmer 4s linear infinite;
     font-weight: 700;
+    transform: scale(1.05);
 }
 
 .info {
@@ -555,24 +595,7 @@ button:disabled {
     border-color: #e94560;
 }
 
-.table-container {
-    background: linear-gradient(135deg, var(--card-bg) 0%, #252844 100%);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 40px rgba(233, 69, 96, 0.2);
-    margin-bottom: 2rem;
-    animation: fadeIn 0.8s ease-out 0.4s both;
-    transition: all 0.3s ease;
-    border: 1px solid var(--card-border);
-}
-
-.table-container:hover {
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.6),
-        0 0 60px rgba(233, 69, 96, 0.3);
-}
+.table-container {\n    background: linear-gradient(135deg, var(--card-bg) 0%, #161b22 100%);\n    border-radius: 20px;\n    overflow: hidden;\n    box-shadow: \n        0 20px 60px rgba(0, 0, 0, 0.8),\n        0 0 40px rgba(77, 184, 255, 0.25);\n    margin-bottom: 2rem;\n    animation: fadeIn 0.8s ease-out 0.4s both;\n    transition: all 0.3s ease;\n    border: 2px solid rgba(77, 184, 255, 0.2);\n}\n\n.table-container:hover {\n    box-shadow: \n        0 25px 70px rgba(0, 0, 0, 0.9),\n        0 0 60px rgba(77, 184, 255, 0.4);\n    border-color: rgba(77, 184, 255, 0.4);\n}
 
 table {
     width: 100%;
@@ -584,26 +607,30 @@ thead th {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+    background: linear-gradient(135deg, #4db8ff 0%, #58a6ff 50%, #1f6feb 100%);
+    background-size: 200% 200%;
     color: #000;
     padding: 1rem 1.25rem;
     text-align: left;
     font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     transition: all 0.3s ease;
     box-shadow: 
-        0 2px 10px rgba(88, 166, 255, 0.5),
-        0 0 20px rgba(88, 166, 255, 0.3);
+        0 3px 15px rgba(77, 184, 255, 0.6),
+        0 0 25px rgba(77, 184, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: shimmer 8s linear infinite;
 }
 
 thead th:hover {
-    background: linear-gradient(135deg, #1f6feb 0%, #58a6ff 100%);
+    background: linear-gradient(135deg, #1f6feb 0%, #58a6ff 50%, #4db8ff 100%);
     transform: scale(1.02);
     box-shadow: 
-        0 2px 10px rgba(88, 166, 255, 0.7),
-        0 0 30px rgba(88, 166, 255, 0.5);
+        0 4px 20px rgba(77, 184, 255, 0.8),
+        0 0 40px rgba(77, 184, 255, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 tbody td {
@@ -620,48 +647,84 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background: rgba(45, 50, 80, 0.6);
-    transform: translateX(5px) scale(1.01);
+    background: rgba(22, 27, 34, 0.8);
+    transform: translateX(3px);
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        -4px 0 0 var(--primary);
-    z-index: 1;
+        0 4px 20px rgba(77, 184, 255, 0.2),
+        -3px 0 0 rgba(77, 184, 255, 0.3);
 }
 
 tbody tr.solved-user1 {
-    background: linear-gradient(135deg, rgba(88, 166, 255, 0.15) 0%, rgba(88, 166, 255, 0.05) 100%) !important;
-    border-left: 4px solid #58a6ff;
-    box-shadow: inset 0 0 20px rgba(88, 166, 255, 0.2);
+    background: linear-gradient(135deg, rgba(77, 184, 255, 0.22) 0%, rgba(77, 184, 255, 0.08) 100%) !important;
+    border-left: 5px solid #4db8ff;
+    box-shadow: 
+        inset 0 0 30px rgba(77, 184, 255, 0.25),
+        inset 5px 0 15px rgba(77, 184, 255, 0.4);
+    position: relative;
+}
+
+tbody tr.solved-user1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #4db8ff 0%, #58a6ff 50%, #4db8ff 100%);
+    box-shadow: 0 0 15px rgba(77, 184, 255, 0.8);
+    animation: lightsaber 3s ease-in-out infinite;
 }
 
 tbody tr.solved-user1:hover {
-    background: linear-gradient(135deg, rgba(88, 166, 255, 0.25) 0%, rgba(88, 166, 255, 0.15) 100%) !important;
+    background: linear-gradient(135deg, rgba(77, 184, 255, 0.35) 0%, rgba(77, 184, 255, 0.18) 100%) !important;
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.5),
-        -4px 0 0 #58a6ff,
-        0 0 30px rgba(88, 166, 255, 0.4),
-        inset 0 0 30px rgba(88, 166, 255, 0.3);
+        0 8px 25px rgba(77, 184, 255, 0.4),
+        -5px 0 0 #4db8ff,
+        0 0 40px rgba(77, 184, 255, 0.6),
+        inset 0 0 40px rgba(77, 184, 255, 0.4),
+        inset 5px 0 20px rgba(77, 184, 255, 0.6);
+    transform: translateX(3px);
 }
 
 tbody tr.solved-user2 {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.05) 100%) !important;
-    border-left: 4px solid #ffd700;
-    box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.15);
+    background: linear-gradient(135deg, rgba(255, 235, 59, 0.18) 0%, rgba(255, 215, 0, 0.08) 100%) !important;
+    border-left: 5px solid #ffeb3b;
+    box-shadow: 
+        inset 0 0 30px rgba(255, 235, 59, 0.2),
+        inset 5px 0 15px rgba(255, 215, 0, 0.4);
+    position: relative;
+}
+
+tbody tr.solved-user2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #ffeb3b 0%, #ffd700 50%, #ffeb3b 100%);
+    box-shadow: 0 0 15px rgba(255, 235, 59, 0.8);
+    animation: shimmer 4s linear infinite;
+    background-size: 100% 200%;
 }
 
 tbody tr.solved-user2:hover {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 235, 59, 0.28) 0%, rgba(255, 215, 0, 0.15) 100%) !important;
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.5),
-        -4px 0 0 #ffd700,
-        0 0 30px rgba(255, 215, 0, 0.3),
-        inset 0 0 30px rgba(255, 215, 0, 0.2);
+        0 8px 25px rgba(255, 215, 0, 0.4),
+        -5px 0 0 #ffeb3b,
+        0 0 40px rgba(255, 235, 59, 0.5),
+        inset 0 0 40px rgba(255, 235, 59, 0.35),
+        inset 5px 0 20px rgba(255, 215, 0, 0.5);
+    transform: translateX(3px);
 }
 
 tbody tr.solved-both {
-    background: linear-gradient(135deg, rgba(31, 111, 235, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%) !important;
-    border-left: 4px solid #58a6ff;
-    box-shadow: inset 0 0 20px rgba(88, 166, 255, 0.25);
+    background: linear-gradient(135deg, rgba(77, 184, 255, 0.25) 0%, rgba(255, 235, 59, 0.15) 100%) !important;
+    border-left: 5px solid transparent;
+    box-shadow: 
+        inset 0 0 35px rgba(77, 184, 255, 0.3),
+        inset 0 0 35px rgba(255, 235, 59, 0.2);
     position: relative;
 }
 
@@ -671,21 +734,32 @@ tbody tr.solved-both::before {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background: linear-gradient(135deg, #58a6ff 0%, #ffd700 100%);
+    width: 5px;
+    background: linear-gradient(180deg, 
+        #4db8ff 0%, 
+        #58a6ff 20%, 
+        #ffeb3b 40%, 
+        #ffd700 60%, 
+        #ffeb3b 80%, 
+        #4db8ff 100%);
     animation: shimmer 3s linear infinite;
-    background-size: 200% 200%;
+    background-size: 100% 300%;
+    box-shadow: 
+        0 0 15px rgba(77, 184, 255, 0.8),
+        0 0 15px rgba(255, 235, 59, 0.6);
 }
 
 tbody tr.solved-both:hover {
-    background: linear-gradient(135deg, rgba(31, 111, 235, 0.3) 0%, rgba(255, 215, 0, 0.2) 100%) !important;
+    background: linear-gradient(135deg, rgba(77, 184, 255, 0.4) 0%, rgba(255, 235, 59, 0.25) 100%) !important;
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.5),
-        -4px 0 0 #58a6ff,
-        0 0 30px rgba(88, 166, 255, 0.5),
-        0 0 30px rgba(255, 215, 0, 0.3),
-        inset 0 0 30px rgba(88, 166, 255, 0.3),
-        inset 0 0 30px rgba(255, 215, 0, 0.2);
+        0 8px 30px rgba(77, 184, 255, 0.5),
+        0 8px 30px rgba(255, 235, 59, 0.4),
+        -5px 0 0 #4db8ff,
+        0 0 50px rgba(77, 184, 255, 0.6),
+        0 0 50px rgba(255, 235, 59, 0.5),
+        inset 0 0 45px rgba(77, 184, 255, 0.4),
+        inset 0 0 45px rgba(255, 235, 59, 0.3);
+    transform: translateX(3px) scale(1.005);
 }
 
 .tags {
@@ -708,7 +782,7 @@ a:hover {
 
 .problem-name-link {
     color: var(--text);
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
@@ -719,20 +793,24 @@ a:hover {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    bottom: -2px;
+    height: 3px;
+    bottom: -3px;
     left: 0;
-    background: linear-gradient(90deg, #ffd700 0%, #58a6ff 100%);
+    background: linear-gradient(90deg, #ffeb3b 0%, #4db8ff 100%);
     transition: width 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    box-shadow: 
+        0 0 15px rgba(255, 235, 59, 0.8),
+        0 0 10px rgba(77, 184, 255, 0.6);
+    border-radius: 2px;
 }
 
 .problem-name-link:hover {
-    color: var(--primary);
-    transform: translateX(5px);
+    color: var(--lightsaber-blue);
+    transform: translateX(8px);
     text-shadow: 
-        0 0 10px rgba(88, 166, 255, 0.6),
-        0 0 20px rgba(255, 215, 0, 0.4);
+        0 0 15px rgba(77, 184, 255, 0.8),
+        0 0 25px rgba(255, 235, 59, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .problem-name-link:hover::after {
