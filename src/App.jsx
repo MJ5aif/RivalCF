@@ -96,6 +96,13 @@ function App() {
     setCurrentPage(1);
   }, [selectedRating]);
 
+  // Auto-fetch on component mount with default handles
+  useEffect(() => {
+    if (userHandle1 && userHandle2) {
+      fetchSolvedProblems();
+    }
+  }, []); // Empty dependency array means run once on mount
+
   // Determine row class based on who solved it
   const getRowClass = (problemId) => {
     const solvedBy1 = solvedByUser1.has(problemId);
