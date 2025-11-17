@@ -114,7 +114,11 @@ function App() {
   return (
     <div className="container">
       <header>
-        <h1>Codeforces Problem Tracker</h1>
+        <div className="header-content">
+          <img src="/logo.svg" alt="RivalCF Logo" className="logo" />
+          <h1>RivalCF</h1>
+        </div>
+        <p className="tagline">Compare Your Codeforces Progress</p>
         <div className="controls">
           <div className="user-input-group">
             <div className="input-wrapper">
