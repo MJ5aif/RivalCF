@@ -316,45 +316,45 @@ header:hover {
 
 /* Matrix Color Coding */
 .theme-matrix tbody tr.solved-user1 {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.15) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.4) 0%, rgba(255, 215, 0, 0.25) 100%) !important;
     border-left: 5px solid #ffd700;
-    box-shadow: -5px 0 15px rgba(255, 215, 0, 0.4);
+    box-shadow: -5px 0 15px rgba(255, 215, 0, 0.5);
 }
 
 .theme-matrix tbody tr.solved-user1:hover {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.35) 0%, rgba(255, 215, 0, 0.2) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0.35) 100%) !important;
     box-shadow: 
-        0 5px 20px rgba(255, 215, 0, 0.4),
+        0 5px 20px rgba(255, 215, 0, 0.5),
         -5px 0 0 #ffd700,
-        -5px 0 20px rgba(255, 215, 0, 0.5);
+        -5px 0 20px rgba(255, 215, 0, 0.6);
 }
 
 .theme-matrix tbody tr.solved-user2 {
-    background: linear-gradient(135deg, rgba(0, 102, 255, 0.25) 0%, rgba(0, 102, 255, 0.15) 100%) !important;
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.4) 0%, rgba(0, 102, 255, 0.25) 100%) !important;
     border-left: 5px solid #0066ff;
-    box-shadow: -5px 0 15px rgba(0, 102, 255, 0.4);
+    box-shadow: -5px 0 15px rgba(0, 102, 255, 0.5);
 }
 
 .theme-matrix tbody tr.solved-user2:hover {
-    background: linear-gradient(135deg, rgba(0, 102, 255, 0.35) 0%, rgba(0, 102, 255, 0.2) 100%) !important;
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.5) 0%, rgba(0, 102, 255, 0.35) 100%) !important;
     box-shadow: 
-        0 5px 20px rgba(0, 102, 255, 0.4),
+        0 5px 20px rgba(0, 102, 255, 0.5),
         -5px 0 0 #0066ff,
-        -5px 0 20px rgba(0, 102, 255, 0.5);
+        -5px 0 20px rgba(0, 102, 255, 0.6);
 }
 
 .theme-matrix tbody tr.solved-both {
-    background: linear-gradient(135deg, rgba(255, 0, 0, 0.25) 0%, rgba(255, 0, 0, 0.15) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(255, 0, 0, 0.25) 100%) !important;
     border-left: 5px solid #ff0000;
-    box-shadow: -5px 0 15px rgba(255, 0, 0, 0.4);
+    box-shadow: -5px 0 15px rgba(255, 0, 0, 0.5);
 }
 
 .theme-matrix tbody tr.solved-both:hover {
-    background: linear-gradient(135deg, rgba(255, 0, 0, 0.35) 0%, rgba(255, 0, 0, 0.2) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0.35) 100%) !important;
     box-shadow: 
-        0 5px 20px rgba(255, 0, 0, 0.4),
+        0 5px 20px rgba(255, 0, 0, 0.5),
         -5px 0 0 #ff0000,
-        -5px 0 20px rgba(255, 0, 0, 0.5);
+        -5px 0 20px rgba(255, 0, 0, 0.6);
 }
 
 .theme-matrix .both-solved-badge {
@@ -714,16 +714,19 @@ button:disabled {
 .legend-color.green {
     background: #ffd700;
     border-color: #ffd700;
+    opacity: 1;
 }
 
 .legend-color.blue {
     background: #0066ff;
     border-color: #0066ff;
+    opacity: 1;
 }
 
 .legend-color.red {
     background: #ff0000;
     border-color: #ff0000;
+    opacity: 1;
 }
 
 .table-container {\n    background: linear-gradient(135deg, var(--card-bg) 0%, #161b22 100%);\n    border-radius: 20px;\n    overflow: hidden;\n    box-shadow: \n        0 20px 60px rgba(0, 0, 0, 0.8),\n        0 0 40px rgba(77, 184, 255, 0.25);\n    margin-bottom: 2rem;\n    animation: fadeIn 0.8s ease-out 0.4s both;\n    transition: all 0.3s ease;\n    border: 2px solid rgba(77, 184, 255, 0.2);\n}\n\n.table-container:hover {\n    box-shadow: \n        0 25px 70px rgba(0, 0, 0, 0.9),\n        0 0 60px rgba(77, 184, 255, 0.4);\n    border-color: rgba(77, 184, 255, 0.4);\n}
@@ -944,6 +947,22 @@ a:hover {
     border-radius: 6px;
     border: 1px solid rgba(0, 255, 65, 0.4);
     font-weight: 700;
+}
+
+.theme-matrix a {
+    color: #000000;
+    background: rgba(0, 255, 65, 0.15);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 65, 0.4);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.theme-matrix a:hover {
+    background: rgba(0, 255, 65, 0.25);
+    border-color: rgba(0, 255, 65, 0.6);
 }
 
 .problem-name-link::after {
