@@ -110,6 +110,9 @@ function App() {
   // Calculate solve counts for current filtered problems
   const yourSolveCount = filteredProblems.filter(p => solvedByUser1.has(p.problemId)).length;
   const rivalSolveCount = filteredProblems.filter(p => solvedByUser2.has(p.problemId)).length;
+  const bothSolvedCount = filteredProblems.filter(p => 
+    solvedByUser1.has(p.problemId) && solvedByUser2.has(p.problemId)
+  ).length;
 
   return (
     <div className="container">
@@ -153,6 +156,12 @@ function App() {
               {loading ? 'Loading...' : 'Check Solved'}
             </button>
           </div>
+          {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && bothSolvedCount > 0 && (
+            <div className="both-solved-badge">
+              <span className="both-icon">🔥</span>
+              <span>Both Solved: <strong>{bothSolvedCount}</strong></span>
+            </div>
+          )}
         </div>
       </header>
 
