@@ -12,6 +12,7 @@ function App() {
   const [solvedByUser2, setSolvedByUser2] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [theme, setTheme] = useState('winter');
 
   const fetchSolvedForUser = async (handle) => {
     try {
@@ -123,14 +124,36 @@ function App() {
   const uniqueSolvedCount = yourSolveCount + rivalSolveCount - bothSolvedCount;
 
   return (
-    <div className="container">
+    <div className={`container theme-${theme}`}>
       <header>
         <div className="header-content">
           <img src="/logo.svg" alt="RivalCF Logo" className="logo" />
           <h1>RivalCF</h1>
         </div>
         <p className="tagline">Compare Your Codeforces Progress</p>
-        <div className="controls">
+        
+        <div className="theme-selector">
+          <button 
+            className={theme === 'winter' ? 'active' : ''} 
+            onClick={() => setTheme('winter')}
+          >
+            ❄️ Winter is Coming
+          </button>
+          <button 
+            className={theme === 'starwars' ? 'active' : ''} 
+            onClick={() => setTheme('starwars')}
+          >
+            ⚡ Star Wars
+          </button>
+          <button 
+            className={theme === 'matrix' ? 'active' : ''} 
+            onClick={() => setTheme('matrix')}
+          >
+            💚 Matrix
+          </button>
+        </div>
+
+        <div className="controls">"
           <div className="user-input-group">
             <div className="input-wrapper">
               <input
