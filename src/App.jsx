@@ -127,12 +127,12 @@ function App() {
       <header>
         <div className="header-content">
           <div className="logo">{'</>'}</div>
-          <h1>RivalCF</h1>
+          <h1>Rival_CF</h1>
         </div>
         <p className="tagline">Compare Your Codeforces Progress</p>
 
-        <div className="controls">"
-          <div className="user-input-group">
+        <div className="controls">
+          <div className="input-row">
             <div className="input-wrapper">
               <input
                 type="text"
@@ -141,11 +141,6 @@ function App() {
                 onChange={(e) => setUserHandle1(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && fetchSolvedProblems()}
               />
-              {userHandle1 && solvedByUser1.size > 0 && (
-                <div className="solve-count yours">
-                  Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
-                </div>
-              )}
             </div>
             <div className="input-wrapper">
               <input
@@ -155,30 +150,30 @@ function App() {
                 onChange={(e) => setUserHandle2(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && fetchSolvedProblems()}
               />
-              {userHandle2 && solvedByUser2.size > 0 && (
-                <div className="solve-count rival">
-                  Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
-                </div>
-              )}
             </div>
-            {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
-              <>
-                {bothSolvedCount > 0 && (
-                  <div className="both-solved-badge">
-                    <span className="both-icon">🔥</span>
-                    <span>Both Solved: <strong>{bothSolvedCount}</strong></span>
-                  </div>
-                )}
-                <div className="unique-solved-badge">
-                  <span className="unique-icon">⭐</span>
-                  <span>Total Unique: <strong>{uniqueSolvedCount}</strong></span>
-                </div>
-              </>
-            )}
             <button onClick={fetchSolvedProblems} disabled={loading}>
               {loading ? 'Loading...' : 'Check Solved'}
             </button>
           </div>
+          
+          {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
+            <div className="stats-row">
+              <div className="solve-count yours">
+                Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
+              </div>
+              <div className="solve-count rival">
+                Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
+              </div>
+              {bothSolvedCount > 0 && (
+                <div className="solve-count both">
+                  Both Solved: <strong>{bothSolvedCount}</strong>
+                </div>
+              )}
+              <div className="solve-count unique">
+                Total Unique: <strong>{uniqueSolvedCount}</strong>
+              </div>
+            </div>
+          )}
         </div>
       </header>
 

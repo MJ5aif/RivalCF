@@ -410,10 +410,41 @@ h1 {
 
 .controls {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.input-row {
+    display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+.input-row .input-wrapper {
+    flex: 0 0 40%;
+}
+
+.input-row .input-wrapper input {
+    width: 100%;
+}
+
+.input-row button {
+    flex: 0 0 15%;
+    min-width: 120px;
+}
+
+.stats-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .user-input-group {
@@ -427,19 +458,18 @@ h1 {
 .input-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
 }
 
 .solve-count {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
     animation: fadeIn 0.5s ease-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
+    min-width: 180px;
     text-align: center;
+    border: 2px solid;
 }
 
 .solve-count.yours {
@@ -451,7 +481,19 @@ h1 {
 .solve-count.rival {
     background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
     color: #000000;
-    border: 2px solid #3b82f6;
+    border-color: #3b82f6;
+}
+
+.solve-count.both {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #000000;
+    border-color: #ef4444;
+}
+
+.solve-count.unique {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #000000;
+    border-color: #f59e0b;
 }
 
 .solve-count strong {
