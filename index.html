@@ -5,9 +5,71 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RivalCF - Codeforces Problem Tracker</title>
+    <style>
+      #matrix-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        display: block;
+      }
+    </style>
   </head>
   <body>
+    <canvas id="matrix-bg"></canvas>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Matrix rain animation by Boujjou Achraf
+      var c = document.getElementById("matrix-bg");
+      var ctx = c.getContext("2d");
+
+      // making the canvas full screen
+      c.height = window.innerHeight;
+      c.width = window.innerWidth;
+
+      // characters for the rain
+      var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+      matrix = matrix.split("");
+
+      var font_size = 10;
+      var columns = c.width/font_size;
+      var drops = [];
+      
+      for(var x = 0; x < columns; x++)
+        drops[x] = 1; 
+
+      function draw() {
+        ctx.fillStyle = "rgba(232, 232, 232, 0.04)";
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        ctx.fillStyle = "#00ff41";
+        ctx.font = font_size + "px arial";
+        
+        for(var i = 0; i < drops.length; i++) {
+          var text = matrix[Math.floor(Math.random()*matrix.length)];
+          ctx.fillText(text, i*font_size, drops[i]*font_size);
+
+          if(drops[i]*font_size > c.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+          drops[i]++;
+        }
+      }
+
+      setInterval(draw, 35);
+      
+      // Resize canvas on window resize
+      window.addEventListener('resize', function() {
+        c.height = window.innerHeight;
+        c.width = window.innerWidth;
+        columns = c.width/font_size;
+        drops = [];
+        for(var x = 0; x < columns; x++)
+          drops[x] = 1;
+      });
+    </script>
   </body>
 </html>
