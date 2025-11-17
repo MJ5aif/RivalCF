@@ -5,8 +5,8 @@ const ITEMS_PER_PAGE = 100;
 const RATINGS = [1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
 function App() {
-  const [userHandle1, setUserHandle1] = useState('');
-  const [userHandle2, setUserHandle2] = useState('');
+  const [userHandle1, setUserHandle1] = useState('MJSaif');
+  const [userHandle2, setUserHandle2] = useState('MJ5aif');
   const [selectedRating, setSelectedRating] = useState(null);
   const [solvedByUser1, setSolvedByUser1] = useState(new Set());
   const [solvedByUser2, setSolvedByUser2] = useState(new Set());
