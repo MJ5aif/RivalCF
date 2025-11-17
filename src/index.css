@@ -98,6 +98,7 @@ html, body, #root {
 }
 
 body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: #000000;
     background-size: 200% 200%;
     color: var(--text);
@@ -106,6 +107,8 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    max-width: 100vw;
+    box-sizing: border-box;
 }
 
 body::before {
@@ -163,6 +166,8 @@ body::after {
     animation: fadeIn 0.8s ease-out;
     position: relative;
     z-index: 1;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 header {
@@ -375,7 +380,9 @@ h1 {
 }
 
 input {
-    min-width: 280px;
+    min-width: 200px;
+    max-width: 100%;
+    width: 280px;
     padding: 0.75rem 1.25rem;
     border: 2px solid var(--border);
     border-radius: 12px;
@@ -384,6 +391,7 @@ input {
     outline: none;
     font-size: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
 }
 
 input::placeholder {
@@ -622,6 +630,36 @@ thead th {
         0 0 25px rgba(77, 184, 255, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     animation: shimmer 8s linear infinite;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+thead th:first-child {
+    width: 35%;
+    min-width: 200px;
+}
+
+thead th:nth-child(2) {
+    width: 10%;
+    min-width: 80px;
+    text-align: center;
+}
+
+thead th:nth-child(3) {
+    width: 30%;
+    min-width: 150px;
+}
+
+thead th:nth-child(4) {
+    width: 12%;
+    min-width: 100px;
+    text-align: center;
+}
+
+thead th:nth-child(5) {
+    width: 13%;
+    min-width: 100px;
+    text-align: center;
 }
 
 thead th:hover {
@@ -638,31 +676,39 @@ tbody td {
     color: var(--text);
     font-size: 0.95rem;
     border-bottom: 1px solid var(--border);
-    max-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 tbody td:first-child {
-    max-width: 400px;
+    width: 35%;
+    min-width: 200px;
+    white-space: nowrap;
 }
 
 tbody td:nth-child(2) {
-    max-width: 100px;
+    width: 10%;
+    min-width: 80px;
+    text-align: center;
 }
 
 tbody td:nth-child(3) {
-    max-width: 300px;
+    width: 30%;
+    min-width: 150px;
     white-space: normal;
+    word-wrap: break-word;
 }
 
 tbody td:nth-child(4) {
-    max-width: 120px;
+    width: 12%;
+    min-width: 100px;
+    text-align: center;
 }
 
 tbody td:nth-child(5) {
-    max-width: 120px;
+    width: 13%;
+    min-width: 100px;
+    text-align: center;
 }
 
 tbody tr {
@@ -891,9 +937,13 @@ a:hover {
     animation: float 3s ease-in-out infinite;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 768px) {
     body {
         padding: 1rem;
+    }
+
+    .container {
+        padding: 0;
     }
     
     .logo {
@@ -910,7 +960,8 @@ a:hover {
     }
     
     input {
-        min-width: 200px;
+        min-width: 150px;
+        width: 100%;
     }
     
     .user-input-group {
@@ -927,6 +978,11 @@ a:hover {
     
     .table-container {
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 800px;
     }
     
     .pagination {
@@ -936,5 +992,15 @@ a:hover {
     
     .pagination button {
         width: 100%;
+    }
+
+    .stats-badges {
+        width: 100%;
+    }
+
+    .both-solved-badge,
+    .unique-solved-badge {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
     }
 }
