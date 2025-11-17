@@ -161,24 +161,24 @@ function App() {
                 </div>
               )}
             </div>
+            {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
+              <>
+                {bothSolvedCount > 0 && (
+                  <div className="both-solved-badge">
+                    <span className="both-icon">🔥</span>
+                    <span>Both Solved: <strong>{bothSolvedCount}</strong></span>
+                  </div>
+                )}
+                <div className="unique-solved-badge">
+                  <span className="unique-icon">⭐</span>
+                  <span>Total Unique: <strong>{uniqueSolvedCount}</strong></span>
+                </div>
+              </>
+            )}
             <button onClick={fetchSolvedProblems} disabled={loading}>
               {loading ? 'Loading...' : 'Check Solved'}
             </button>
           </div>
-          {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
-            <div className="stats-badges">
-              {bothSolvedCount > 0 && (
-                <div className="both-solved-badge">
-                  <span className="both-icon">🔥</span>
-                  <span>Both Solved: <strong>{bothSolvedCount}</strong></span>
-                </div>
-              )}
-              <div className="unique-solved-badge">
-                <span className="unique-icon">⭐</span>
-                <span>Total Unique: <strong>{uniqueSolvedCount}</strong></span>
-              </div>
-            </div>
-          )}
         </div>
       </header>
 
