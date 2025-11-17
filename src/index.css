@@ -205,6 +205,14 @@ h1 {
     font-weight: 700;
 }
 
+.stats-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
 .both-solved-badge {
     display: flex;
     align-items: center;
@@ -217,8 +225,7 @@ h1 {
     font-size: 0.95rem;
     border: 2px solid #ef4444;
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-    animation: fadeIn 0.5s ease-out, pulse 2s infinite;
-    margin-top: 0.5rem;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .both-icon {
@@ -229,6 +236,31 @@ h1 {
 .both-solved-badge strong {
     font-size: 1.2rem;
     color: #7f1d1d;
+}
+
+.unique-solved-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid #f59e0b;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.unique-icon {
+    font-size: 1.2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.unique-solved-badge strong {
+    font-size: 1.2rem;
+    color: #78350f;
 }
 
 input {

@@ -113,6 +113,7 @@ function App() {
   const bothSolvedCount = filteredProblems.filter(p => 
     solvedByUser1.has(p.problemId) && solvedByUser2.has(p.problemId)
   ).length;
+  const uniqueSolvedCount = yourSolveCount + rivalSolveCount - bothSolvedCount;
 
   return (
     <div className="container">
@@ -156,10 +157,18 @@ function App() {
               {loading ? 'Loading...' : 'Check Solved'}
             </button>
           </div>
-          {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && bothSolvedCount > 0 && (
-            <div className="both-solved-badge">
-              <span className="both-icon">🔥</span>
-              <span>Both Solved: <strong>{bothSolvedCount}</strong></span>
+          {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
+            <div className="stats-badges">
+              {bothSolvedCount > 0 && (
+                <div className="both-solved-badge">
+                  <span className="both-icon">🔥</span>
+                  <span>Both Solved: <strong>{bothSolvedCount}</strong></span>
+                </div>
+              )}
+              <div className="unique-solved-badge">
+                <span className="unique-icon">⭐</span>
+                <span>Total Unique: <strong>{uniqueSolvedCount}</strong></span>
+              </div>
             </div>
           )}
         </div>
