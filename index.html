@@ -42,11 +42,11 @@
         drops[x] = 1; 
 
       function draw() {
-        ctx.fillStyle = "rgba(232, 232, 232, 0.04)";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
         ctx.fillRect(0, 0, c.width, c.height);
 
-        // Array of colors to cycle through
-        var colors = ["#00ff41", "#0066ff", "#ffd700", "#ff0000", "#00ffff", "#ff00ff"];
+        // Array of colors to cycle through - now using red/pink tones
+        var colors = ["#ff0066", "#ff0033", "#ff3366", "#ff0099", "#cc0066", "#ff006f"];
         
         for(var i = 0; i < drops.length; i++) {
           // Use different color for each column
