@@ -47,15 +47,15 @@
 .theme-matrix {
     --primary: #00ff41;
     --primary-dark: #008f11;
-    --secondary: #39ff14;
-    --accent: #00ff41;
-    --border: #003b00;
+    --secondary: #ffd700;
+    --accent: #0066ff;
+    --border: #00ff41;
     --text: #00ff41;
     --muted: #008f11;
-    --card-bg: #001100;
-    --card-border: #003300;
-    --shadow: rgba(0, 255, 65, 0.4);
-    --glow: rgba(57, 255, 20, 0.6);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(0, 255, 65, 0.3);
+    --shadow: rgba(0, 255, 65, 0.5);
+    --glow: rgba(0, 255, 65, 0.8);
 }
 
 @keyframes fadeIn {
@@ -211,23 +211,16 @@ body::after {
 
 /* Matrix Theme Background */
 .theme-matrix body::before {
-    background-image: 
-        radial-gradient(1px 1px at 20% 30%, #00ff41, transparent),
-        radial-gradient(1px 1px at 60% 70%, #00ff41, transparent),
-        radial-gradient(1px 1px at 50% 50%, #39ff14, transparent),
-        radial-gradient(1px 1px at 80% 10%, #00ff41, transparent),
-        radial-gradient(1px 1px at 90% 60%, #00ff41, transparent);
-    opacity: 0.3;
+    display: none;
 }
 
 .theme-matrix body::after {
-    background: 
-        radial-gradient(circle at 30% 40%, rgba(0, 255, 65, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+    display: none;
 }
 
 .theme-matrix body {
-    background: #000000;
+    background: #f8f9fa;
+    color: #00ff41;
 }
 
 @keyframes snowfall {
@@ -300,6 +293,22 @@ header:hover {
         0 0 60px rgba(168, 197, 221, 0.5),
         inset 0 2px 30px rgba(232, 244, 248, 0.15);
     border-color: var(--primary);
+}
+
+.theme-matrix header {
+    background: #ffffff;
+    border: 2px solid #00ff41;
+    box-shadow: 
+        0 10px 30px rgba(0, 255, 65, 0.3),
+        0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.theme-matrix header:hover {
+    box-shadow: 
+        0 15px 40px rgba(0, 255, 65, 0.4),
+        0 0 30px rgba(0, 255, 65, 0.3);
+    border-color: #00ff41;
+    transform: translateY(-3px);
 }
 
 .header-content {
@@ -378,6 +387,107 @@ header:hover {
     box-shadow: 0 8px 25px rgba(0, 255, 65, 0.6);
 }
 
+.theme-matrix * {
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+.theme-matrix .tagline,
+.theme-matrix input::placeholder,
+.theme-matrix .muted {
+    color: #008f11;
+}
+
+.theme-matrix .filters,
+.theme-matrix .table-container,
+.theme-matrix .pagination {
+    background: #ffffff;
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 255, 65, 0.15);
+}
+
+.theme-matrix input,
+.theme-matrix button {
+    background: #ffffff;
+    border: 2px solid #00ff41;
+    color: #00ff41;
+}
+
+.theme-matrix button:hover:not(:disabled) {
+    background: #00ff41;
+    color: #000000;
+    box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
+}
+
+.theme-matrix thead th {
+    background: #00ff41;
+    color: #000000;
+    box-shadow: 0 2px 10px rgba(0, 255, 65, 0.3);
+}
+
+.theme-matrix tbody tr {
+    background: #ffffff;
+}
+
+.theme-matrix tbody tr:hover {
+    background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 255, 65, 0.2);
+}
+
+/* Matrix Color Coding */
+.theme-matrix tbody tr.solved-user1 {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%) !important;
+    border-left: 5px solid #ffd700;
+    box-shadow: -5px 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.theme-matrix tbody tr.solved-user1:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%) !important;
+    box-shadow: 
+        0 5px 20px rgba(255, 215, 0, 0.3),
+        -5px 0 0 #ffd700,
+        -5px 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.theme-matrix tbody tr.solved-user2 {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(0, 102, 255, 0.05) 100%) !important;
+    border-left: 5px solid #0066ff;
+    box-shadow: -5px 0 15px rgba(0, 102, 255, 0.3);
+}
+
+.theme-matrix tbody tr.solved-user2:hover {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.25) 0%, rgba(0, 102, 255, 0.1) 100%) !important;
+    box-shadow: 
+        0 5px 20px rgba(0, 102, 255, 0.3),
+        -5px 0 0 #0066ff,
+        -5px 0 20px rgba(0, 102, 255, 0.4);
+}
+
+.theme-matrix tbody tr.solved-both {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(255, 0, 0, 0.05) 100%) !important;
+    border-left: 5px solid #ff0000;
+    box-shadow: -5px 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.theme-matrix tbody tr.solved-both:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.25) 0%, rgba(255, 0, 0, 0.1) 100%) !important;
+    box-shadow: 
+        0 5px 20px rgba(255, 0, 0, 0.3),
+        -5px 0 0 #ff0000,
+        -5px 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.theme-matrix .both-solved-badge {
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    border-color: #ff0000;
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+}
+
+.theme-matrix .unique-solved-badge {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    border-color: #ffd700;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
 h1 {
     font-size: 2.8rem;
     font-weight: 700;
@@ -400,7 +510,9 @@ h1 {
 
 .theme-matrix h1 {
     background: linear-gradient(135deg, #00ff41 0%, #39ff14 50%, #00ff41 100%);
-    filter: drop-shadow(0 0 25px rgba(0, 255, 65, 0.9));
+    filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8));
+    font-family: 'Courier New', monospace;
+    letter-spacing: 4px;
 }
 
 .controls {
