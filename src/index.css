@@ -679,6 +679,11 @@ button:disabled {
     box-shadow: 0 5px 20px rgba(0, 255, 65, 0.15);
 }
 
+.theme-matrix .info p,
+.theme-matrix .legend-item {
+    color: #000000;
+}
+
 .info p {
     margin: 0 0 1rem;
     color: var(--muted);
