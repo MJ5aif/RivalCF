@@ -977,6 +977,16 @@ a:hover {
     position: relative;
 }
 
+.theme-matrix .problem-name-link {
+    color: #00ff41;
+    text-shadow: 
+        -0.5px -0.5px 0 #000,
+        0.5px -0.5px 0 #000,
+        -0.5px 0.5px 0 #000,
+        0.5px 0.5px 0 #000,
+        0 0 5px rgba(0, 255, 65, 0.3);
+}
+
 .problem-name-link::after {
     content: '';
     position: absolute;
