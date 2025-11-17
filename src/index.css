@@ -358,17 +358,17 @@ header:hover {
 }
 
 .theme-matrix .both-solved-badge {
-    background: linear-gradient(135deg, rgba(255, 0, 0, 0.85) 0%, rgba(221, 0, 0, 0.85) 100%);
-    border-color: rgba(255, 0, 0, 0.8);
-    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.7) 0%, rgba(221, 0, 0, 0.7) 100%);
+    border-color: rgba(255, 0, 0, 0.6);
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.3);
     color: #ffffff;
     font-weight: 900;
 }
 
 .theme-matrix .unique-solved-badge {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.85) 0%, rgba(255, 237, 78, 0.85) 100%);
-    border-color: rgba(255, 215, 0, 0.8);
-    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.7) 0%, rgba(255, 237, 78, 0.7) 100%);
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.3);
     color: #000000;
     font-weight: 900;
 }
@@ -978,13 +978,12 @@ a:hover {
 }
 
 .theme-matrix .problem-name-link {
-    color: #00ff41;
-    text-shadow: 
-        -0.5px -0.5px 0 #000,
-        0.5px -0.5px 0 #000,
-        -0.5px 0.5px 0 #000,
-        0.5px 0.5px 0 #000,
-        0 0 5px rgba(0, 255, 65, 0.3);
+    color: #000000;
+    background: rgba(0, 255, 65, 0.15);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 65, 0.4);
+    font-weight: 700;
 }
 
 .problem-name-link::after {
