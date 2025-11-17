@@ -126,7 +126,7 @@ function App() {
     <div className="container theme-matrix">
       <header>
         <div className="header-content">
-          <img src="/logo.svg" alt="RivalCF Logo" className="logo" />
+          <div className="logo">{'</>'}</div>
           <h1>RivalCF</h1>
         </div>
         <p className="tagline">Compare Your Codeforces Progress</p>
