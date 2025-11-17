@@ -166,7 +166,7 @@ body::after {
 
 .theme-matrix body {
     background: #f8f9fa;
-    color: #00ff41;
+    color: #00cc33;
 }
 
 @keyframes gradientShift {
@@ -261,12 +261,14 @@ header:hover {
 
 .theme-matrix * {
     font-family: 'Courier New', Courier, monospace !important;
+    font-weight: 600;
 }
 
 .theme-matrix .tagline,
 .theme-matrix input::placeholder,
 .theme-matrix .muted {
-    color: #008f11;
+    color: #00aa22;
+    font-weight: 600;
 }
 
 .theme-matrix .filters,
@@ -281,7 +283,8 @@ header:hover {
 .theme-matrix button {
     background: #ffffff;
     border: 2px solid #00ff41;
-    color: #00ff41;
+    color: #00bb33;
+    font-weight: 700;
 }
 
 .theme-matrix button:hover:not(:disabled) {
@@ -298,6 +301,12 @@ header:hover {
 
 .theme-matrix tbody tr {
     background: #ffffff;
+    color: #000000;
+}
+
+.theme-matrix tbody td {
+    color: #000000;
+    font-weight: 600;
 }
 
 .theme-matrix tbody tr:hover {
@@ -349,15 +358,19 @@ header:hover {
 }
 
 .theme-matrix .both-solved-badge {
-    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    background: linear-gradient(135deg, #ff0000 0%, #dd0000 100%);
     border-color: #ff0000;
-    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.6);
+    color: #ffffff;
+    font-weight: 900;
 }
 
 .theme-matrix .unique-solved-badge {
     background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
     border-color: #ffd700;
-    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.6);
+    color: #000000;
+    font-weight: 900;
 }
 
 h1 {
@@ -376,10 +389,14 @@ h1 {
 }
 
 .theme-matrix h1 {
-    background: linear-gradient(135deg, #00ff41 0%, #39ff14 50%, #00ff41 100%);
-    filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8));
+    background: linear-gradient(135deg, #00ff41 0%, #00dd35 50%, #00ff41 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 25px rgba(0, 255, 65, 1)) drop-shadow(0 0 10px rgba(0, 255, 65, 0.8));
     font-family: 'Courier New', monospace;
     letter-spacing: 4px;
+    text-shadow: 0 0 30px rgba(0, 255, 65, 0.9);
 }
 
 .controls {
