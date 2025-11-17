@@ -159,10 +159,10 @@ function App() {
           {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
             <div className="stats-row">
               <div className="solve-count yours">
-                Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
+                U_Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
               </div>
               <div className="solve-count rival">
-                Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
+                Ri_Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
               </div>
               {bothSolvedCount > 0 && (
                 <div className="solve-count both">
