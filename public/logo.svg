@@ -20,8 +20,8 @@
   <!-- Main Circle -->
   <circle cx="100" cy="100" r="80" fill="none" stroke="url(#grad1)" stroke-width="8"/>
   
-  <!-- VS Symbol -->
-  <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#grad1)" text-anchor="middle">VS</text>
+  <!-- CF Symbol -->
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ef4444" text-anchor="middle">CF</text>
   
   <!-- Left Side - Green Trophy (You) -->
   <g transform="translate(40, 60)">
