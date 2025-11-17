@@ -45,10 +45,14 @@
         ctx.fillStyle = "rgba(232, 232, 232, 0.04)";
         ctx.fillRect(0, 0, c.width, c.height);
 
-        ctx.fillStyle = "#00ff41";
-        ctx.font = font_size + "px arial";
+        // Array of colors to cycle through
+        var colors = ["#00ff41", "#0066ff", "#ffd700", "#ff0000", "#00ffff", "#ff00ff"];
         
         for(var i = 0; i < drops.length; i++) {
+          // Use different color for each column
+          ctx.fillStyle = colors[i % colors.length];
+          ctx.font = font_size + "px arial";
+          
           var text = matrix[Math.floor(Math.random()*matrix.length)];
           ctx.fillText(text, i*font_size, drops[i]*font_size);
 
