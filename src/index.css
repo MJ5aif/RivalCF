@@ -673,6 +673,12 @@ button:disabled {
     border: 1px solid var(--card-border);
 }
 
+.theme-matrix .info {
+    background: #ffffff;
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 255, 65, 0.15);
+}
+
 .info p {
     margin: 0 0 1rem;
     color: var(--muted);
