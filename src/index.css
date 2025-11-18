@@ -325,10 +325,6 @@ header:hover {
 .theme-matrix tbody td {
     color: #000000;
     font-weight: 600;
-    background: #ffffff;
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 255, 65, 0.4);
 }
 
 .theme-matrix tbody tr:hover {
@@ -908,12 +904,6 @@ tbody tr {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(28, 31, 53, 0.4);
     animation: fadeIn 0.5s ease-out both;
-    cursor: pointer;
-}
-
-tbody tr:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 10px rgba(77, 184, 255, 0.4);
 }
 
 tbody tr:hover {
@@ -1015,11 +1005,19 @@ a:hover {
 
 .theme-matrix .problem-name-link {
     color: #000000;
+    background: rgba(0, 255, 65, 0.15);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 65, 0.4);
     font-weight: 700;
 }
 
 .theme-matrix a {
     color: #000000;
+    background: rgba(0, 255, 65, 0.15);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 65, 0.4);
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;

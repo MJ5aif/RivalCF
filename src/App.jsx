@@ -127,7 +127,7 @@ function App() {
       <header>
         <div className="header-content">
           <div className="logo">{'</>'}</div>
-          <h1>Rival_CF</h1>
+          <h1>RivalCF</h1>
         </div>
         <p className="tagline">Compare Your Codeforces Progress</p>
 
@@ -159,10 +159,10 @@ function App() {
           {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
             <div className="stats-row">
               <div className="solve-count yours">
-                U_Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
+                Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
               </div>
               <div className="solve-count rival">
-                Ri_Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
+                Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
               </div>
               {bothSolvedCount > 0 && (
                 <div className="solve-count both">
@@ -232,8 +232,6 @@ function App() {
               <tr
                 key={index}
                 className={getRowClass(problem.problemId)}
-                onClick={() => window.open(problem.link, '_blank')}
-                style={{ cursor: 'pointer' }}
               >
                 <td>
                   <a
@@ -241,7 +239,6 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="problem-name-link"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     {problem.name}
                   </a>
@@ -257,7 +254,6 @@ function App() {
                     href={problem.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     {problem.problemId}
                   </a>
