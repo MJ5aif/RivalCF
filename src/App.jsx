@@ -232,6 +232,8 @@ function App() {
               <tr
                 key={index}
                 className={getRowClass(problem.problemId)}
+                onClick={() => window.open(problem.link, '_blank')}
+                style={{ cursor: 'pointer' }}
               >
                 <td>
                   <a
@@ -239,6 +241,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="problem-name-link"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {problem.name}
                   </a>
@@ -254,6 +257,7 @@ function App() {
                     href={problem.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {problem.problemId}
                   </a>

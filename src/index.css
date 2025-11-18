@@ -904,6 +904,7 @@ tbody tr {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(28, 31, 53, 0.4);
     animation: fadeIn 0.5s ease-out both;
+    cursor: pointer;
 }
 
 tbody tr:hover {
