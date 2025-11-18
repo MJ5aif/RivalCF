@@ -325,7 +325,7 @@ header:hover {
 .theme-matrix tbody td {
     color: #000000;
     font-weight: 600;
-    background: rgba(0, 255, 65, 0.15);
+    background: #ffffff;
     padding: 0.5rem 0.8rem;
     border-radius: 6px;
     border: 1px solid rgba(0, 255, 65, 0.4);
