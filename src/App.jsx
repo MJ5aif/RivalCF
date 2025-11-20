@@ -7,7 +7,7 @@ const RATINGS = [1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 260
 function App() {
   const [userHandle1, setUserHandle1] = useState('MJSaif');
   const [userHandle2, setUserHandle2] = useState('MJ5aif');
-  const [selectedRating, setSelectedRating] = useState(null);
+  const [selectedRating, setSelectedRating] = useState(1800);
   const [solvedByUser1, setSolvedByUser1] = useState(new Set());
   const [solvedByUser2, setSolvedByUser2] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
@@ -162,7 +162,7 @@ function App() {
                 U_Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
               </div>
               <div className="solve-count rival">
-                R_Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
+                Rival_Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
               </div>
               {bothSolvedCount >= 0 && (
                 <div className="solve-count both">
