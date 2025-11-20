@@ -12,6 +12,16 @@ function App() {
   const [solvedByUser2, setSolvedByUser2] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [visitCount, setVisitCount] = useState(0);
+
+  // Track page visits
+  useEffect(() => {
+    const storedCount = localStorage.getItem('pageVisitCount');
+    const currentCount = storedCount ? parseInt(storedCount, 10) : 0;
+    const newCount = currentCount + 1;
+    localStorage.setItem('pageVisitCount', newCount.toString());
+    setVisitCount(newCount);
+  }, []);
 
   const fetchSolvedForUser = async (handle) => {
     try {
@@ -128,6 +138,11 @@ function App() {
         <div className="header-content">
           <div className="logo">{'</>'}</div>
           <h1>Rival_CF</h1>
+          {visitCount > 0 && (
+            <div className="visit-counter">
+              👁️ Visits: {visitCount.toLocaleString()}
+            </div>
+          )}
         </div>
         <p className="tagline">Compare Your Codeforces Progress</p>
 

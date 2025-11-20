@@ -237,6 +237,31 @@ header:hover {
     justify-content: center;
     gap: 1.5rem;
     margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.visit-counter {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
+    color: #000000;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    animation: float 3s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.theme-matrix .visit-counter {
+    background: rgba(0, 255, 65, 0.15);
+    border-color: rgba(0, 255, 65, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+    color: #000000;
 }
 
 .logo {
@@ -1125,6 +1150,13 @@ a:hover {
     
     .header-content {
         gap: 1rem;
+        flex-direction: column;
+    }
+    
+    .visit-counter {
+        position: static;
+        transform: none;
+        margin-top: 0.5rem;
     }
     
     input {
