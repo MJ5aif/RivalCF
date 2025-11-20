@@ -1,6 +1,68 @@
 import requests
 import json
 import os
+import time
+from bs4 import BeautifulSoup
+import concurrent.futures
+from threading import Lock
+
+# Global variables for progress tracking
+processed_count = 0
+total_count = 0
+lock = Lock()
+
+def get_problem_statement_length(contest_id, index):
+    """Fetch the actual problem statement length from the problem page"""
+    try:
+        url = f"https://codeforces.com/contest/{contest_id}/problem/{index}"
+        response = requests.get(url, timeout=10)
+        
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Find the problem statement div
+            problem_statement = soup.find('div', class_='problem-statement')
+            
+            if problem_statement:
+                # Get text content and calculate length
+                text = problem_statement.get_text(strip=True)
+                return len(text)
+        
+        return 0
+    except Exception as e:
+        return 0
+
+def fetch_problem_with_length(problem_data):
+    """Fetch a single problem with its statement length"""
+    global processed_count
+    
+    problem, stats = problem_data
+    contest_id = problem['contestId']
+    index = problem['index']
+    problem_id = str(contest_id) + index
+    stat = stats.get(problem_id, {})
+    
+    # Get actual problem statement length
+    length = get_problem_statement_length(contest_id, index)
+    
+    with lock:
+        global processed_count
+        processed_count += 1
+        if processed_count % 100 == 0:
+            print(f"  Processed {processed_count}/{total_count} problems...")
+    
+    # Small delay to avoid rate limiting
+    time.sleep(0.1)
+    
+    return {
+        'name': problem['name'],
+        'rating': problem['rating'],
+        'tags': problem.get('tags', []),
+        'solveCount': stat.get('solvedCount', 0),
+        'length': length,
+        'link': f"https://codeforces.com/contest/{contest_id}/problem/{index}",
+        'problemId': problem_id
+    }
 
 def fetch_codeforces_problems():
     """Fetch all problems from Codeforces API"""
@@ -23,7 +85,8 @@ def fetch_codeforces_problems():
             problem_id = str(stat['contestId']) + stat['index']
             problem_stats[problem_id] = stat
         
-        # Process each problem
+        # Filter problems first
+        filtered_problems = []
         for problem in data['result']['problems']:
             # Skip problems without rating
             if 'rating' not in problem:
@@ -35,23 +98,25 @@ def fetch_codeforces_problems():
             if rating < 1600 or rating > 3000:
                 continue
             
-            contest_id = problem['contestId']
-            index = problem['index']
-            problem_id = str(contest_id) + index
-            stats = problem_stats.get(problem_id, {})
-            
-            # Calculate problem length (you can adjust this heuristic)
-            length = len(problem.get('name', '')) * 10  # Simple heuristic
-            
-            problems.append({
-                'name': problem['name'],
-                'rating': rating,
-                'tags': problem.get('tags', []),
-                'solveCount': stats.get('solvedCount', 0),
-                'length': length,
-                'link': f"https://codeforces.com/contest/{contest_id}/problem/{index}",
-                'problemId': problem_id
-            })
+            filtered_problems.append(problem)
+        
+        global total_count, processed_count
+        total_count = len(filtered_problems)
+        processed_count = 0
+        
+        print(f"Fetching problem statement lengths for {total_count} problems...")
+        print("This may take a while (approximately 10-15 minutes)...")
+        
+        # Prepare data for parallel processing
+        problem_data_list = [(p, problem_stats) for p in filtered_problems]
+        
+        # Use ThreadPoolExecutor for parallel fetching
+        problems = []
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            problems = list(executor.map(fetch_problem_with_length, problem_data_list))
+        
+        # Remove problems with length 0 (failed to fetch)
+        problems = [p for p in problems if p['length'] > 0]
         
         # Sort by length ascending
         problems.sort(key=lambda x: x['length'])
