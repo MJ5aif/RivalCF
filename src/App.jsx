@@ -127,7 +127,7 @@ function App() {
       <header>
         <div className="header-content">
           <div className="logo">{'</>'}</div>
-          <h1>RivalCF</h1>
+          <h1>Rival_CF</h1>
         </div>
         <p className="tagline">Compare Your Codeforces Progress</p>
 
@@ -159,12 +159,12 @@ function App() {
           {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
             <div className="stats-row">
               <div className="solve-count yours">
-                Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
+                U_Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
               </div>
               <div className="solve-count rival">
-                Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
+                R_Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
               </div>
-              {bothSolvedCount > 0 && (
+              {bothSolvedCount >= 0 && (
                 <div className="solve-count both">
                   Both Solved: <strong>{bothSolvedCount}</strong>
                 </div>
