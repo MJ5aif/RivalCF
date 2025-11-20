@@ -53,8 +53,8 @@ def fetch_codeforces_problems():
                 'problemId': problem_id
             })
         
-        # Sort by rating, then by solve count
-        problems.sort(key=lambda x: (x['rating'], -x['solveCount']))
+        # Sort by length ascending
+        problems.sort(key=lambda x: x['length'])
         
         print(f"Successfully fetched {len(problems)} problems (rating 1600-3000)")
         return problems
