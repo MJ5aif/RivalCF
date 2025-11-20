@@ -85,7 +85,11 @@ for line in lines:
     if problem and problem['rating'] >= 1600 and problem['rating'] <= 3000:
         problems.append(problem)
 
+# Sort by length (ascending)
+problems.sort(key=lambda x: x['length'])
+
 print(f"Total problems parsed: {len(problems)}")
+print(f"Sorted by length (ascending)")
 
 # Write JavaScript file
 with open('/Users/md.monowarjahansaif/Downloads/CP/Mock_P/cf-tracker/src/problems.js', 'w', encoding='utf-8') as f:

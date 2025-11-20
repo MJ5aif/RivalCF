@@ -14,22 +14,32 @@ lock = Lock()
 def get_problem_statement_length(contest_id, index):
     """Fetch the actual problem statement length from the problem page"""
     try:
-        url = f"https://codeforces.com/contest/{contest_id}/problem/{index}"
-        response = requests.get(url, timeout=10)
+        url = f"https://codeforces.com/problemset/problem/{contest_id}/{index}"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.get(url, timeout=15, headers=headers)
         
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             
-            # Find the problem statement div
+            # Try multiple selectors
             problem_statement = soup.find('div', class_='problem-statement')
+            
+            if not problem_statement:
+                # Try alternate selector
+                problem_statement = soup.find('div', {'class': 'problemindexholder'})
             
             if problem_statement:
                 # Get text content and calculate length
-                text = problem_statement.get_text(strip=True)
-                return len(text)
+                text = problem_statement.get_text(separator=' ', strip=True)
+                length = len(text)
+                if length > 100:  # Valid problem statement should be at least 100 chars
+                    return length
         
         return 0
     except Exception as e:
+        print(f"  Error fetching {contest_id}{index}: {str(e)}")
         return 0
 
 def fetch_problem_with_length(problem_data):
@@ -52,7 +62,7 @@ def fetch_problem_with_length(problem_data):
             print(f"  Processed {processed_count}/{total_count} problems...")
     
     # Small delay to avoid rate limiting
-    time.sleep(0.1)
+    time.sleep(0.2)
     
     return {
         'name': problem['name'],
@@ -117,6 +127,9 @@ def fetch_codeforces_problems():
         
         # Remove problems with length 0 (failed to fetch)
         problems = [p for p in problems if p['length'] > 0]
+        
+        print(f"\nSuccessfully fetched lengths for {len(problems)} problems")
+        print(f"Failed to fetch: {total_count - len(problems)} problems")
         
         # Sort by length ascending
         problems.sort(key=lambda x: x['length'])
