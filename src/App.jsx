@@ -173,15 +173,15 @@ function App() {
     if (solvers.length === 0) return {};
     if (solvers.length === 1) {
       return {
-        background: `linear-gradient(135deg, ${solvers[0].color}15 0%, ${solvers[0].color}08 100%)`,
-        borderLeft: `3px solid ${solvers[0].color}`,
+        background: `linear-gradient(135deg, ${solvers[0].color}50 0%, ${solvers[0].color}35 100%)`,
+        borderLeft: `5px solid ${solvers[0].color}`,
       };
     }
     
     // Multiple users solved - create gradient
     const colors = solvers.map(s => s.color);
     return {
-      background: `linear-gradient(135deg, ${colors[0]}22 0%, ${colors[colors.length - 1]}22 100%)`,
+      background: `linear-gradient(135deg, ${colors[0]}50 0%, ${colors[colors.length - 1]}50 100%)`,
       borderLeft: `5px solid ${colors[0]}`,
     };
   };
