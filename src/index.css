@@ -518,6 +518,18 @@ h1 {
     padding: 1rem 2rem;
     font-size: 1.1rem;
     margin-top: 0.5rem;
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    box-shadow: 
+        0 8px 20px rgba(6, 182, 212, 0.4),
+        0 0 15px rgba(6, 182, 212, 0.3);
+}
+
+.check-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    box-shadow: 
+        0 12px 30px rgba(6, 182, 212, 0.6),
+        0 0 30px rgba(6, 182, 212, 0.5);
+    transform: translateY(-2px);
 }
 
 .user-badge {
@@ -708,15 +720,15 @@ button {
     padding: 0.75rem 1.5rem;
     border-radius: 12px;
     border: none;
-    background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
     background-size: 200% 200%;
-    color: #000;
+    color: #ffffff;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     box-shadow: 
-        0 10px 30px rgba(88, 166, 255, 0.5),
-        0 0 20px rgba(88, 166, 255, 0.4);
+        0 8px 20px rgba(139, 92, 246, 0.4),
+        0 0 15px rgba(139, 92, 246, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -732,26 +744,18 @@ button::before {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    background: transparent;
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-button:hover::before {
-    width: 300px;
-    height: 300px;
+    transition: none;
+    pointer-events: none;
 }
 
 button:hover:not(:disabled) {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px);
     box-shadow: 
-        0 15px 40px rgba(77, 184, 255, 0.8),
-        0 0 40px rgba(77, 184, 255, 0.7),
-        0 0 60px rgba(255, 255, 255, 0.3),
-        inset 0 2px 10px rgba(255, 255, 255, 0.2);
-    background-position: 100% 0;
-    animation: lightsaber 1s infinite;
-    border: 2px solid rgba(77, 184, 255, 0.5);
+        0 12px 30px rgba(139, 92, 246, 0.6),
+        0 0 30px rgba(139, 92, 246, 0.5);
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
 }
 
 button:active:not(:disabled) {
