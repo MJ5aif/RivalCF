@@ -4,12 +4,25 @@ import { problems } from './problems.js';
 const ITEMS_PER_PAGE = 100;
 const RATINGS = [1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
+// Color palette for users
+const USER_COLORS = [
+  '#10b981', // green
+  '#3b82f6', // blue
+  '#f59e0b', // amber
+  '#ef4444', // red
+  '#8b5cf6', // purple
+  '#ec4899', // pink
+  '#14b8a6', // teal
+  '#f97316', // orange
+];
+
 function App() {
-  const [userHandle1, setUserHandle1] = useState('MJSaif');
-  const [userHandle2, setUserHandle2] = useState('MJ5aif');
+  const [users, setUsers] = useState([
+    { id: 1, handle: 'MJSaif', solved: new Set(), color: USER_COLORS[0] },
+    { id: 2, handle: 'MJ5aif', solved: new Set(), color: USER_COLORS[1] },
+  ]);
+  const [newHandle, setNewHandle] = useState('');
   const [selectedRating, setSelectedRating] = useState(1800);
-  const [solvedByUser1, setSolvedByUser1] = useState(new Set());
-  const [solvedByUser2, setSolvedByUser2] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
@@ -47,8 +60,40 @@ function App() {
     }
   };
 
-  const fetchSolvedProblems = async () => {
-    if (!userHandle1.trim() && !userHandle2.trim()) {
+  const addUser = () => {
+    if (!newHandle.trim()) {
+      alert('Please enter a handle');
+      return;
+    }
+    
+    if (users.some(u => u.handle.toLowerCase() === newHandle.trim().toLowerCase())) {
+      alert('User already added');
+      return;
+    }
+
+    const newUser = {
+      id: Date.now(),
+      handle: newHandle.trim(),
+      solved: new Set(),
+      color: USER_COLORS[users.length % USER_COLORS.length]
+    };
+    
+    setUsers([...users, newUser]);
+    setNewHandle('');
+  };
+
+  const removeUser = (userId) => {
+    if (users.length <= 1) {
+      alert('At least one user is required');
+      return;
+    }
+    setUsers(users.filter(u => u.id !== userId));
+  };
+
+  const fetchAllSolvedProblems = async () => {
+    const validUsers = users.filter(u => u.handle.trim());
+    
+    if (validUsers.length === 0) {
       alert('Please enter at least one Codeforces handle');
       return;
     }
@@ -56,35 +101,26 @@ function App() {
     setLoading(true);
     
     try {
-      const promises = [];
+      const results = await Promise.all(
+        validUsers.map(user => fetchSolvedForUser(user.handle))
+      );
       
-      if (userHandle1.trim()) {
-        promises.push(fetchSolvedForUser(userHandle1));
-      } else {
-        promises.push(Promise.resolve({ success: true, solved: new Set() }));
-      }
+      const updatedUsers = users.map((user, index) => {
+        if (!user.handle.trim()) return user;
+        
+        const resultIndex = validUsers.findIndex(u => u.id === user.id);
+        const result = results[resultIndex];
+        
+        if (result && result.success) {
+          console.log(`${user.handle} solved:`, result.solved.size);
+          return { ...user, solved: result.solved };
+        } else {
+          alert(`${user.handle}: ${result?.error || 'Unknown error'}`);
+          return user;
+        }
+      });
       
-      if (userHandle2.trim()) {
-        promises.push(fetchSolvedForUser(userHandle2));
-      } else {
-        promises.push(Promise.resolve({ success: true, solved: new Set() }));
-      }
-      
-      const [result1, result2] = await Promise.all(promises);
-      
-      if (result1.success) {
-        setSolvedByUser1(result1.solved);
-        console.log('User 1 solved:', result1.solved.size);
-      } else {
-        alert(`User 1: ${result1.error}`);
-      }
-      
-      if (result2.success) {
-        setSolvedByUser2(result2.solved);
-        console.log('User 2 solved:', result2.solved.size);
-      } else {
-        alert(`User 2: ${result2.error}`);
-      }
+      setUsers(updatedUsers);
     } finally {
       setLoading(false);
     }
@@ -108,29 +144,40 @@ function App() {
 
   // Auto-fetch on component mount with default handles
   useEffect(() => {
-    if (userHandle1 && userHandle2) {
-      fetchSolvedProblems();
+    if (users.some(u => u.handle)) {
+      fetchAllSolvedProblems();
     }
   }, []); // Empty dependency array means run once on mount
 
-  // Determine row class based on who solved it
-  const getRowClass = (problemId) => {
-    const solvedBy1 = solvedByUser1.has(problemId);
-    const solvedBy2 = solvedByUser2.has(problemId);
+  // Determine row style based on who solved it
+  const getRowStyle = (problemId) => {
+    const solvers = users.filter(u => u.solved.has(problemId));
     
-    if (solvedBy1 && solvedBy2) return 'solved-both';
-    if (solvedBy1) return 'solved-user1';
-    if (solvedBy2) return 'solved-user2';
-    return '';
+    if (solvers.length === 0) return {};
+    if (solvers.length === 1) {
+      return {
+        background: `linear-gradient(135deg, ${solvers[0].color}22 0%, ${solvers[0].color}08 100%)`,
+        borderLeft: `5px solid ${solvers[0].color}`,
+      };
+    }
+    
+    // Multiple users solved - create gradient
+    const colors = solvers.map(s => s.color);
+    return {
+      background: `linear-gradient(135deg, ${colors[0]}22 0%, ${colors[colors.length - 1]}22 100%)`,
+      borderLeft: `5px solid ${colors[0]}`,
+    };
   };
 
   // Calculate solve counts for current filtered problems
-  const yourSolveCount = filteredProblems.filter(p => solvedByUser1.has(p.problemId)).length;
-  const rivalSolveCount = filteredProblems.filter(p => solvedByUser2.has(p.problemId)).length;
-  const bothSolvedCount = filteredProblems.filter(p => 
-    solvedByUser1.has(p.problemId) && solvedByUser2.has(p.problemId)
-  ).length;
-  const uniqueSolvedCount = yourSolveCount + rivalSolveCount - bothSolvedCount;
+  const userStats = users.map(user => ({
+    ...user,
+    solveCount: filteredProblems.filter(p => user.solved.has(p.problemId)).length
+  }));
+  
+  const totalUniqueSolved = new Set(
+    filteredProblems.filter(p => users.some(u => u.solved.has(p.problemId))).map(p => p.problemId)
+  ).size;
 
   return (
     <div className="container theme-matrix">
@@ -147,45 +194,62 @@ function App() {
         <p className="tagline">Compare Your Codeforces Progress</p>
 
         <div className="controls">
-          <div className="input-row">
-            <div className="input-wrapper">
+          <div className="users-container">
+            {users.map((user, index) => (
+              <div key={user.id} className="user-item">
+                <span className="user-color-badge" style={{ backgroundColor: user.color }}></span>
+                <input
+                  type="text"
+                  placeholder={`User ${index + 1} Handle`}
+                  value={user.handle}
+                  onChange={(e) => {
+                    const newUsers = [...users];
+                    newUsers[index].handle = e.target.value;
+                    setUsers(newUsers);
+                  }}
+                  onKeyPress={(e) => e.key === 'Enter' && fetchAllSolvedProblems()}
+                  className="user-input"
+                />
+                <button 
+                  onClick={() => removeUser(user.id)} 
+                  className="remove-user-btn"
+                  disabled={users.length <= 1}
+                  title="Remove user"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            
+            <div className="add-user-row">
               <input
                 type="text"
-                placeholder="Your Handle"
-                value={userHandle1}
-                onChange={(e) => setUserHandle1(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && fetchSolvedProblems()}
+                placeholder="Add new handle..."
+                value={newHandle}
+                onChange={(e) => setNewHandle(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && addUser()}
+                className="add-user-input"
               />
+              <button onClick={addUser} className="add-user-btn">
+                + Add User
+              </button>
             </div>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                placeholder="Rival Handle"
-                value={userHandle2}
-                onChange={(e) => setUserHandle2(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && fetchSolvedProblems()}
-              />
-            </div>
-            <button onClick={fetchSolvedProblems} disabled={loading}>
-              {loading ? 'Loading...' : 'Check Solved'}
+            
+            <button onClick={fetchAllSolvedProblems} disabled={loading} className="check-btn">
+              {loading ? 'Loading...' : 'Check All Users'}
             </button>
           </div>
           
-          {userHandle1 && userHandle2 && solvedByUser1.size > 0 && solvedByUser2.size > 0 && (
+          {users.some(u => u.solved.size > 0) && (
             <div className="stats-row">
-              <div className="solve-count yours">
-                U_Solved: <strong>{yourSolveCount}</strong> / {filteredProblems.length}
-              </div>
-              <div className="solve-count rival">
-                Rival_Solved: <strong>{rivalSolveCount}</strong> / {filteredProblems.length}
-              </div>
-              {bothSolvedCount >= 0 && (
-                <div className="solve-count both">
-                  Both Solved: <strong>{bothSolvedCount}</strong>
+              {userStats.map(user => (
+                <div key={user.id} className="solve-count" style={{ borderColor: user.color }}>
+                  <span className="user-badge" style={{ backgroundColor: user.color }}></span>
+                  {user.handle}: <strong>{user.solveCount}</strong> / {filteredProblems.length}
                 </div>
-              )}
+              ))}
               <div className="solve-count unique">
-                Total Unique: <strong>{uniqueSolvedCount}</strong>
+                Total Unique: <strong>{totalUniqueSolved}</strong>
               </div>
             </div>
           )}
@@ -218,15 +282,12 @@ function App() {
           {filteredProblems.length} problems
         </p>
         <div className="legend">
-          <span className="legend-item">
-            <span className="legend-color green"></span> You Only
-          </span>
-          <span className="legend-item">
-            <span className="legend-color blue"></span> Rival Only
-          </span>
-          <span className="legend-item">
-            <span className="legend-color red"></span> Both
-          </span>
+          {users.map(user => (
+            <span key={user.id} className="legend-item">
+              <span className="legend-color" style={{ backgroundColor: user.color }}></span>
+              {user.handle || `User ${users.indexOf(user) + 1}`}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -246,7 +307,7 @@ function App() {
             {currentProblems.map((problem, index) => (
               <tr
                 key={index}
-                className={getRowClass(problem.problemId)}
+                style={getRowStyle(problem.problemId)}
               >
                 <td>
                   <a

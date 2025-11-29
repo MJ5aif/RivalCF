@@ -436,8 +436,96 @@ h1 {
 .controls {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
+}
+
+.users-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-color-badge {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.user-input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.remove-user-btn {
+    padding: 0.5rem 0.75rem;
+    background: rgba(239, 68, 68, 0.2);
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 1rem;
+    min-width: auto;
+    width: auto;
+}
+
+.remove-user-btn:hover:not(:disabled) {
+    background: #ef4444;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(239, 68, 68, 0.5);
+}
+
+.remove-user-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.add-user-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding-top: 0.5rem;
+    border-top: 2px dashed rgba(0, 255, 65, 0.3);
+}
+
+.add-user-input {
+    flex: 1;
+}
+
+.add-user-btn {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    min-width: 140px;
+}
+
+.add-user-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 5px 20px rgba(16, 185, 129, 0.5);
+}
+
+.check-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.user-badge {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
 }
 
 .input-row {
@@ -495,6 +583,11 @@ h1 {
     min-width: 180px;
     text-align: center;
     border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+    color: #000000;
 }
 
 .solve-count.yours {
