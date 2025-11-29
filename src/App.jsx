@@ -161,6 +161,11 @@ function App() {
     }
   }, []); // Empty dependency array means run once on mount
 
+  // Get users who solved a problem
+  const getSolvedByUsers = (problemId) => {
+    return users.filter(u => u.solved.has(problemId));
+  };
+
   // Determine row style based on who solved it
   const getRowStyle = (problemId) => {
     const solvers = users.filter(u => u.solved.has(problemId));
@@ -168,8 +173,8 @@ function App() {
     if (solvers.length === 0) return {};
     if (solvers.length === 1) {
       return {
-        background: `linear-gradient(135deg, ${solvers[0].color}22 0%, ${solvers[0].color}08 100%)`,
-        borderLeft: `5px solid ${solvers[0].color}`,
+        background: `linear-gradient(135deg, ${solvers[0].color}15 0%, ${solvers[0].color}08 100%)`,
+        borderLeft: `3px solid ${solvers[0].color}`,
       };
     }
     
@@ -322,14 +327,24 @@ function App() {
                 style={getRowStyle(problem.problemId)}
               >
                 <td>
-                  <a
-                    href={problem.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="problem-name-link"
-                  >
-                    {problem.name}
-                  </a>
+                  <div className="problem-name-cell">
+                    {getSolvedByUsers(problem.problemId).map(user => (
+                      <span 
+                        key={user.id} 
+                        className="solved-indicator"
+                        style={{ backgroundColor: user.color }}
+                        title={`Solved by ${user.handle}`}
+                      ></span>
+                    ))}
+                    <a
+                      href={problem.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="problem-name-link"
+                    >
+                      {problem.name}
+                    </a>
+                  </div>
                 </td>
                 <td>{problem.rating}</td>
                 <td className="tags">
