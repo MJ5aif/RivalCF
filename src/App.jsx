@@ -27,13 +27,25 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
 
-  // Track page visits
+  // Track page visits globally using API
   useEffect(() => {
-    const storedCount = localStorage.getItem('pageVisitCount');
-    const currentCount = storedCount ? parseInt(storedCount, 10) : 0;
-    const newCount = currentCount + 1;
-    localStorage.setItem('pageVisitCount', newCount.toString());
-    setVisitCount(newCount);
+    // Fetch and increment visit count from API
+    const updateVisitCount = async () => {
+      try {
+        const response = await fetch('https://api.countapi.xyz/hit/rivalcf-mj5aif/visits');
+        const data = await response.json();
+        setVisitCount(data.value);
+      } catch (error) {
+        console.error('Failed to fetch visit count:', error);
+        // Fallback to localStorage
+        const storedCount = localStorage.getItem('pageVisitCount');
+        const currentCount = storedCount ? parseInt(storedCount, 10) : 0;
+        const newCount = currentCount + 1;
+        localStorage.setItem('pageVisitCount', newCount.toString());
+        setVisitCount(newCount);
+      }
+    };
+    updateVisitCount();
   }, []);
 
   const fetchSolvedForUser = async (handle) => {
