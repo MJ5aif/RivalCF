@@ -359,13 +359,13 @@ header:hover {
 
 /* Matrix Color Coding */
 .theme-matrix tbody tr.solved-user1 {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.4) 0%, rgba(255, 215, 0, 0.25) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.65) 0%, rgba(255, 215, 0, 0.50) 100%) !important;
     border-left: 5px solid #ffd700;
     box-shadow: -5px 0 15px rgba(255, 215, 0, 0.5);
 }
 
 .theme-matrix tbody tr.solved-user1:hover {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0.35) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.80) 0%, rgba(255, 215, 0, 0.65) 100%) !important;
     box-shadow: 
         0 5px 20px rgba(255, 215, 0, 0.5),
         -5px 0 0 #ffd700,
@@ -373,13 +373,13 @@ header:hover {
 }
 
 .theme-matrix tbody tr.solved-user2 {
-    background: linear-gradient(135deg, rgba(0, 102, 255, 0.4) 0%, rgba(0, 102, 255, 0.25) 100%) !important;
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.65) 0%, rgba(0, 102, 255, 0.50) 100%) !important;
     border-left: 5px solid #0066ff;
     box-shadow: -5px 0 15px rgba(0, 102, 255, 0.5);
 }
 
 .theme-matrix tbody tr.solved-user2:hover {
-    background: linear-gradient(135deg, rgba(0, 102, 255, 0.5) 0%, rgba(0, 102, 255, 0.35) 100%) !important;
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.80) 0%, rgba(0, 102, 255, 0.65) 100%) !important;
     box-shadow: 
         0 5px 20px rgba(0, 102, 255, 0.5),
         -5px 0 0 #0066ff,
@@ -387,13 +387,13 @@ header:hover {
 }
 
 .theme-matrix tbody tr.solved-both {
-    background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(255, 0, 0, 0.25) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.65) 0%, rgba(255, 0, 0, 0.50) 100%) !important;
     border-left: 5px solid #ff0000;
     box-shadow: -5px 0 15px rgba(255, 0, 0, 0.5);
 }
 
 .theme-matrix tbody tr.solved-both:hover {
-    background: linear-gradient(135deg, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0.35) 100%) !important;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.80) 0%, rgba(255, 0, 0, 0.65) 100%) !important;
     box-shadow: 
         0 5px 20px rgba(255, 0, 0, 0.5),
         -5px 0 0 #ff0000,
