@@ -770,11 +770,116 @@ button:disabled {
     border-color: var(--primary);
 }
 
+.filter-section {
+    margin-bottom: 1.5rem;
+}
+
+.filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.filter-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 1rem 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.theme-matrix .filter-title {
+    color: #000000;
+}
+
+.clear-tags-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-radius: 20px;
+    min-width: auto;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.clear-tags-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+    transform: scale(1.05);
+}
+
 .rating-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     justify-content: center;
+}
+
+.tag-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tag-buttons::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tag-buttons::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.tag-buttons::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.tag-buttons::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+.tag-chip {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    background: rgba(13, 17, 23, 0.8);
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: lowercase;
+    letter-spacing: 0;
+}
+
+.tag-chip:hover:not(.active) {
+    background: rgba(22, 27, 34, 1);
+    border-color: #a78bfa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
+    color: #a78bfa;
+}
+
+.tag-chip.active {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: #ffffff;
+    border-color: #8b5cf6;
+    box-shadow: 
+        0 4px 15px rgba(139, 92, 246, 0.6),
+        0 0 20px rgba(139, 92, 246, 0.4);
+    font-weight: 700;
+    transform: scale(1.05);
 }
 
 .rating-buttons button {

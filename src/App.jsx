@@ -23,6 +23,7 @@ function App() {
   ]);
   const [newHandle, setNewHandle] = useState('');
   const [selectedRating, setSelectedRating] = useState(1800);
+  const [selectedTags, setSelectedTags] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
@@ -138,10 +139,21 @@ function App() {
     }
   };
 
-  // Filter problems by rating
-  const filteredProblems = selectedRating
-    ? problems.filter((p) => p.rating === selectedRating)
-    : problems;
+  // Extract all unique tags from problems
+  const allTags = [...new Set(problems.flatMap(p => p.tags))].sort();
+
+  // Filter problems by rating and tags
+  const filteredProblems = problems.filter((p) => {
+    // Filter by rating
+    if (selectedRating && p.rating !== selectedRating) return false;
+    
+    // Filter by tags (problem must have ALL selected tags)
+    if (selectedTags.length > 0) {
+      return selectedTags.every(tag => p.tags.includes(tag));
+    }
+    
+    return true;
+  });
 
   // Pagination
   const totalPages = Math.ceil(filteredProblems.length / ITEMS_PER_PAGE);
@@ -149,10 +161,10 @@ function App() {
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentProblems = filteredProblems.slice(startIndex, endIndex);
 
-  // Reset to page 1 when rating changes
+  // Reset to page 1 when rating or tags change
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedRating]);
+  }, [selectedRating, selectedTags]);
 
   // Auto-fetch on component mount with default handles
   useEffect(() => {
@@ -274,22 +286,56 @@ function App() {
       </header>
 
       <div className="filters">
-        <div className="rating-buttons">
-          <button
-            className={selectedRating === null ? 'active' : ''}
-            onClick={() => setSelectedRating(null)}
-          >
-            All
-          </button>
-          {RATINGS.map((rating) => (
+        <div className="filter-section">
+          <h3 className="filter-title">Rating</h3>
+          <div className="rating-buttons">
             <button
-              key={rating}
-              className={selectedRating === rating ? 'active' : ''}
-              onClick={() => setSelectedRating(rating)}
+              className={selectedRating === null ? 'active' : ''}
+              onClick={() => setSelectedRating(null)}
             >
-              {rating}
+              All
             </button>
-          ))}
+            {RATINGS.map((rating) => (
+              <button
+                key={rating}
+                className={selectedRating === rating ? 'active' : ''}
+                onClick={() => setSelectedRating(rating)}
+              >
+                {rating}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="filter-section">
+          <h3 className="filter-title">
+            Tags {selectedTags.length > 0 && `(${selectedTags.length} selected)`}
+            {selectedTags.length > 0 && (
+              <button 
+                className="clear-tags-btn"
+                onClick={() => setSelectedTags([])}
+              >
+                Clear All
+              </button>
+            )}
+          </h3>
+          <div className="tag-buttons">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                className={selectedTags.includes(tag) ? 'tag-chip active' : 'tag-chip'}
+                onClick={() => {
+                  setSelectedTags(prev => 
+                    prev.includes(tag) 
+                      ? prev.filter(t => t !== tag)
+                      : [...prev, tag]
+                  );
+                }}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
