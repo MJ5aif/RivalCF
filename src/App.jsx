@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { problems } from './problems.js';
 
-const ITEMS_PER_PAGE = 100;
+const ITEMS_PER_PAGE = 120;
 const RATINGS = [1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
 // Color palette for users
@@ -22,7 +22,7 @@ function App() {
     { id: 2, handle: 'MJ5aif', solved: new Set(), color: USER_COLORS[1] },
   ]);
   const [newHandle, setNewHandle] = useState('');
-  const [selectedRating, setSelectedRating] = useState(1800);
+  const [selectedRating, setSelectedRating] = useState();
   const [selectedTags, setSelectedTags] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
